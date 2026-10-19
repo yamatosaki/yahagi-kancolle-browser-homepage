@@ -138,7 +138,8 @@ npm run build
 - Google Search Console 网域资源 `yahagi.xyz` 已通过 DNS CNAME 验证；Google TXT 验证记录也仍保留。后续维护 DNS 时应保留这些验证记录，避免影响网站所有权验证。
 - 首页 `https://yahagi.xyz/` 的网址检查显示已收录到 Google，Googlebot 智能手机版抓取成功，允许编入索引，Google 选择的规范网址与该首页一致。
 - 网站地图 `https://yahagi.xyz/sitemap.xml` 已提交。日本时间 21:12 的 Google「测试实际网址」已确认允许抓取、抓取成功；但站点地图报告仍显示「未知／无法抓取／已发现 0 页」。实时抓取成功后已重新提交同一份地图，等待地图报告的处理结果；不将实时抓取成功等同于站点地图已解析成功。线上 XML 与 `public/sitemap.xml` 字节一致，六个正式网址、四个 GitHub Pages IP 的严格 TLS 检查均正常，无需为该报告状态修改 DNS 或重命名文件。
-- 功能页与下载页的网址检查均显示尚未收录。日本时间 21:16 的功能页「测试实际网址」已确认抓取成功、允许编入索引，canonical 为 `https://yahagi.xyz/features.html`；这不表示该页已实际收录。两页的手动「请求编入索引」都曾因无法连接 Google reCAPTCHA 服务而失败，尚未取得提交成功确认。已将下载页的单页申请交由用户手动尝试验证，尚待结果；两页也都在已提交的网站地图内。待验证服务恢复后继续申请，不能将失败的尝试记作成功提交。
+- 功能页 `https://yahagi.xyz/features.html` 与下载页 `https://yahagi.xyz/download.html` 均已取得 Google「已请求编入索引」的成功确认，加入优先抓取队列：功能页由用户手动提交，下载页由 Codex 补交并复核。两页的已收录状态尚未更新，不能将申请成功等同于实际收录；无需反复提交同一网址。
+- 功能页于日本时间 21:16 的 Google 实时检测已确认抓取成功、允许编入索引、canonical 正确。先前 reCAPTCHA 连接失败现已不再阻止两页提交，但未捕获足以确认旧故障根因的网络错误，不能据此认定为官网源码、DNS、浏览器扩展或某个验证码脚本版本的问题。
 - 应用仓库 `yamatosaki/yahagi-kancolle-browser` 的 About 官网字段已设置为 `https://yahagi.xyz/`，已通过 GitHub API 核对。
 
 参考：[Google 站点地图](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)、[Google 网站所有权验证](https://support.google.com/webmasters/answer/9008080?hl=en)、[Bing 添加及验证站点](https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b)、[百度普通收录](https://ziyuan.baidu.com/linksubmit/index)。
