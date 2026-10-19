@@ -116,3 +116,21 @@ npm run build
 - [v1.0.8 发布页](https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.0.8)
 
 功能文案依据项目 README。游戏操作由玩家完成；任务进度与估算结果应结合游戏画面判断。日志与编成备份不等于全部应用数据备份。
+
+## 搜索收录准备与提交
+
+正式搜索网址使用 `https://yahagi.xyz/`。六个页面各自声明 canonical；首页以 WebSite 结构化数据说明网站名称，Open Graph metadata 用于链接分享。`public/robots.txt` 允许抓取并声明 `https://yahagi.xyz/sitemap.xml`，站点地图仅列出六个正式页面，不包含开发文档、备份、`index.html` 的重复首页或语言/版本偏好参数。
+
+功能介绍与下载卡片在构建时从现有配置生成 HTML，搜索引擎无需先运行 JavaScript 就能读取这些产品信息；浏览器继续使用原有交互与五语翻译。当前五种语言通过 `?lang=` 切换，未生成独立的静态语言页面，因此不额外声明 hreflang 或把这些偏好 URL 当作独立页面提交。
+
+域名 DNS 生效并启用 HTTPS 后，按顺序完成以下操作：
+
+1. 验证六页、`/robots.txt`、`/sitemap.xml` 在正式域名正常访问，HTTP 和 `www` 指向统一的 HTTPS 正式网址。
+2. 在 [Google Search Console](https://search.google.com/search-console/) 添加 Domain 资源 `yahagi.xyz`。将 Google 实际生成的 TXT 验证记录添加到 GoDaddy DNS，验证后保留该 TXT。提交 `https://yahagi.xyz/sitemap.xml`，并在网址检查中请求抓取首页、功能页和下载页。
+3. 在 [Bing Webmaster Tools](https://www.bing.com/webmasters/) 添加网站，使用平台提供的验证方法证明所有权，再提交同一份 sitemap。若选择从 Google 导入，先检查其请求的账号授权范围。
+4. 如需百度曝光，在 [百度搜索资源平台](https://ziyuan.baidu.com/) 添加 HTTPS 网站并按平台实际提供的方法验证，使用普通收录工具提交六个正式网址；sitemap 提交能力以账号后台为准。
+5. 在应用仓库的官网字段或 README 中链接正式域名，方便用户和搜索引擎发现；修改另一仓库时另按该仓库的维护约定执行。
+
+验证代码、TXT 值和验证文件必须来自所选搜索平台，不使用占位代码。平台验证尚未完成时，不能将网站标记为已提交或已收录。提交只帮助发现网站，不保证收录、排名或完成时间。
+
+参考：[Google 站点地图](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)、[Google 网站所有权验证](https://support.google.com/webmasters/answer/9008080?hl=en)、[Bing 添加及验证站点](https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b)、[百度普通收录](https://ziyuan.baidu.com/linksubmit/index)。

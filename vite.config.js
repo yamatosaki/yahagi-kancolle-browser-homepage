@@ -1,7 +1,17 @@
 import { defineConfig } from 'vite';
 import { fileURLToPath } from 'node:url';
+import { downloads, featureGroups } from './src/site-config.js';
+import { prerenderContent } from './scripts/prerender-content.mjs';
 
 export default defineConfig({
+  plugins: [{
+    name: 'prerender-content',
+    apply: 'build',
+    transformIndexHtml: {
+      order: 'pre',
+      handler: (html) => prerenderContent(html, { featureGroups, downloads }),
+    },
+  }],
   build: {
     rolldownOptions: {
       input: {

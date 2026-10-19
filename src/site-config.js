@@ -1,4 +1,4 @@
-const assetPath = (path) => `${import.meta.env.BASE_URL}assets/${path}`;
+const assetPath = (path) => `${import.meta.env?.BASE_URL ?? './'}assets/${path}`;
 
 export const site = {
   name: 'ヤハギ',
