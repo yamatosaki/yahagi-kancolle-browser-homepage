@@ -7,7 +7,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build --base=./",
     "preview": "vite preview --host 127.0.0.1",
-    "deploy": "npm test && npm run build && gh-pages -d dist --nojekyll -m \"chore(部署): 更新官网静态文件\"",
+    "deploy": "npm test && npm run build && gh-pages -d dist --nojekyll --cname yahagi.xyz -m \"chore(部署): 更新官网静态文件\"",
     "sync:releases": "node scripts/sync-releases.mjs",
     "test": "node --test tests/*.test.mjs"
   },

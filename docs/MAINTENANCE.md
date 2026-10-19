@@ -21,6 +21,8 @@ npm run build
 
 ## GitHub 同步与发布
 
+正式官网地址为 `https://yahagi.xyz/`。`public/CNAME` 由 Vite 复制到 `dist/CNAME`，部署命令同时使用 `--cname yahagi.xyz`，确保每次发布都保留 GitHub Pages 自定义域名。域名在 GoDaddy 管理，DNS 生效后由 GitHub Pages 签发 HTTPS 证书。
+
 `main` 保存网站源码、素材与维护文档；`gh-pages` 保存构建后的静态文件，GitHub Pages 从该分支根目录发布。`node_modules/`、`dist/`、`output/` 和本地环境配置不上传到源码分支。
 
 每次修改完成并检查后，提交并推送源码，再发布网站：
