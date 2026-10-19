@@ -6,6 +6,8 @@
 
 | 文件 | 用途 |
 | --- | --- |
+| `public/assets/brand/yahagi-logo.png` | 用户提供的透明背景 Logo 原始 PNG，保留完整构图与透明度 |
+| `public/favicon-yahagi.png` | 从透明背景 Logo 等比缩小的 64×64 PNG，供全站六页的浏览器标签图标使用 |
 | `public/assets/hero/yahagi-portrait.png` | 用户提供的原始 PNG 首页大头，由 `heroAssets.portrait` 配置 |
 | `public/assets/wordmark-distress.svg` | 当前首页原版 YAHAGI 字标的双斜切线遮罩 |
 | `public/fonts/barlow-condensed-black-italic.ttf` | 首页原版字标与下载页水印字体 Barlow Condensed Black Italic |
@@ -22,6 +24,10 @@
 HarmonyOS Sans 三份字体于 2026 年 10 月 19 日从用户的软件项目 `G:\kancolle project\yahagi-kancolle-browser\assets\fonts\` 原样复制。语言映射依据该项目的 `lib/src/theme/app_fonts.dart`，三份字体均为字重 40–900 的可变字体，未修改、裁剪或转换字体文件。韩文使用系统字体补足；`NotoSansJP-wght.ttf` 未注册在应用的默认字体配置中，因此本次未引入。字体许可来自 [OpenHarmony 官方仓库](https://github.com/openharmony/global_system_resources/blob/master/LICENSE_Fonts)，随字体保存在本地。
 
 替换大头可覆盖原文件，或修改 `src/site-config.js` 中的 `heroAssets.portrait`。同名图片更新后，应同步更新 `index.html` 静态图片 `src` 与 `heroAssets.portrait` 地址中的 `?v=` 版本，避免浏览器沿用缓存。建议保留透明背景；展示窗口的位置与尺寸由 `src/styles.css` 中的 `--portrait-width`、`--portrait-x`、`--portrait-y` 调整，手机断点可分别覆盖。窗口内的裁切可通过 `.art-portrait` 的宽度、`left` 与 `top` 调整，保持图片原始宽高比。图片路径使用 `import.meta.env.BASE_URL`，适配站点根路径或仓库子路径。
+
+## 浏览器标签图标
+
+2026 年 10 月 19 日将用户提供的 `G:\桌面\yahagi图标\logo透明背景.png` 原样保存为 `public/assets/brand/yahagi-logo.png`，尺寸为 1254×1254，SHA256 为 `334bfe83e8460ca5a1e28951f79c1fb05912f30a3b791f427247367e5f703817`。`public/favicon-yahagi.png` 仅使用 Lanczos 重采样等比缩小为 64×64，保留完整构图和透明背景。六页统一使用新文件名，避免沿用旧蓝底 Y 图标的缓存；后续更换时同步六页的 `rel="icon"` 地址。
 
 ## 字标与原版备份
 
