@@ -147,7 +147,8 @@ body:not([data-page="home"]) .site-header{border-bottom:1px solid var(--line)}
 
 /* All four providers are visible; missing mirrors are explicitly disabled. */
 .download-dialog{width:min(700px,calc(100% - 32px));max-height:calc(100svh - 40px);padding:32px 34px 21px;background:var(--paper);color:var(--ink);border:1px solid #e0e4f0;border-radius:20px;box-shadow:0 25px 100px rgb(19 32 68 / 20%)}
-.download-dialog::backdrop{background:rgb(17 24 47 / 39%);backdrop-filter:blur(10px)}
+/* Dim the page without allocating a full-viewport backdrop blur surface. */
+.download-dialog::backdrop{background:rgb(17 24 47 / 39%)}
 .dialog-top{display:flex;align-items:flex-start;justify-content:space-between;gap:15px}
 .dialog-top .eyebrow{margin:9px 0 24px;font-size:8px}
 .dialog-close{display:flex;align-items:center;justify-content:center;width:33px;height:33px;padding:0;background:#e9ecf3;border-radius:50%;font-size:24px;line-height:1}

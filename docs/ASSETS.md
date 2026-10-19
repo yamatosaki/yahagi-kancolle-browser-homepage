@@ -31,7 +31,7 @@ HarmonyOS Sans 三份字体于 2026 年 10 月 19 日从用户的软件项目 `G
 
 ## 字标与原版备份
 
-当前首页已恢复原版字体字标：`h1.hero-wordmark` 直接显示 YAHAGI 文字，使用 Barlow Condensed Black Italic、`skewX(-5deg)` 和 `public/assets/wordmark-distress.svg` 的双斜切线遮罩。首页预载原字体，保留原版手机行高及现有响应式构图；Barlow 字体同时供下载页水印使用，原字体与 OFL 许可继续保留。
+当前首页已恢复原版字体字标：`h1.hero-wordmark` 直接显示 YAHAGI 文字，使用 Barlow Condensed Black Italic、`skewX(-5deg)` 和 `public/assets/wordmark-distress.svg` 的双斜切线遮罩。仅首页和下载页预载该字体，分别用于字标与下载页水印；其余四页不使用该字体，不再预载。原版手机行高、现有响应式构图、原字体与 OFL 许可继续保留。
 
 `public/assets/yahagi-wordmark.svg` 与 `scripts/build-wordmark.py` 暂留作未启用的矢量字标试验稿及其生成源脚本，当前页面不引用试验稿。脚本基于 Barlow 字形调整轮廓、字宽和字距，仅手动重新生成试验稿时需要 Python 与 fontTools；常规 `npm run build` 不执行该脚本。
 
