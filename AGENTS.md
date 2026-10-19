@@ -2,6 +2,7 @@
 
 - 本目录对应 GitHub 仓库 `yamatosaki/yahagi-kancolle-browser-homepage`，`origin` 指向该仓库，源码分支为 `main`。
 - 用户已授权后续官网修改同步到 GitHub。每次完成用户要求的修改后，检查变更、运行适当验证，使用中文 Conventional Commits 提交并推送；不要只保留在本地。
+- 根目录 README 只保留简短的对外项目介绍及官网、应用入口，不添加本地运行、GitHub 同步、开发细节或维护记录；这些内容统一放在 `docs/MAINTENANCE.md`。
 - 网站内容、素材或构建配置变化时，源码推送成功后运行 `npm run deploy`，更新 `gh-pages` 分支，并检查 GitHub Pages 部署结果。仅维护文档变化无需重新发布网站。
 - 提交前运行 `npm test` 和 `npm run build`。未经验证，不宣称发布成功。
 - 仅提交本次任务相关的文件；遇到不属于本次任务的本地改动应保留，不覆盖、不擅自提交。
