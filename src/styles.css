@@ -72,7 +72,7 @@ html:lang(en) .hero-intro{width:33%}
 .hero-intro{position:absolute;right:4%;top:28%;width:30%;max-width:460px}
 .hero-product-label{display:flex;align-items:center;gap:9px;margin:0 0 23px;font-size:9px;font-weight:500;letter-spacing:.13em;color:var(--muted)}
 .hero-product-label>span{width:5px;height:5px;border-radius:50%;background:var(--accent)}
-.hero-tagline{margin:0;font-size:clamp(34px,3.4vw,62px);line-height:1.35;font-weight:500;letter-spacing:-.055em}
+.hero-tagline{margin:0;font-size:clamp(28px,3.4vw,60px);line-height:1.35;font-weight:500;letter-spacing:-.055em}
 .hero-summary{margin:23px 0 28px;font-size:13px;line-height:1.95;color:var(--muted)}
 .hero-actions{display:flex;align-items:stretch;gap:10px}
 .platform-button{display:inline-flex;align-items:center;justify-content:space-between;gap:25px;min-width:0;flex:1;max-width:190px;height:49px;padding:0 16px;border:1px solid var(--ink);border-radius:8px;font-size:12px;font-weight:500;transition:color .2s,background .2s,border-color .2s}
@@ -183,7 +183,7 @@ a.download-source:hover{border-color:var(--accent);background:#f1f4ff}
   .primary-nav{gap:24px}
   .nav-link{font-size:11px}
   .hero-intro{width:34%;right:4%}
-  .hero-tagline{font-size:36px}
+  .hero-tagline{font-size:clamp(26px,4.3vw,36px)}
   .hero-summary{font-size:12px}
   .platform-button{padding:0 12px;gap:15px;font-size:11px}
   .hero-signature{width:55%}

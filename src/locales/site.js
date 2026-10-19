@@ -23,9 +23,9 @@ const translations = [
 
   ['ヤハギ YAHAGI｜舰队 Collection 移动端浏览器', 'ヤハギ YAHAGI｜艦隊 Collection 行動瀏覽器', 'ヤハギ YAHAGI｜艦これモバイルブラウザ', 'ヤハギ YAHAGI｜함대 컬렉션 모바일 브라우저', 'Yahagi YAHAGI | KanColle Mobile Browser'],
   ['ヤハギ（Yahagi）是面向舰队 Collection 玩家的移动端浏览器与信息辅助工具。在手机、平板与折叠屏上，让母港随身而行。', 'ヤハギ（Yahagi）是面向艦隊 Collection 玩家的行動瀏覽器與資訊輔助工具。在手機、平板與摺疊螢幕上，讓母港隨身而行。', 'ヤハギ（Yahagi）は、艦これプレイヤー向けのモバイルブラウザ・情報支援ツールです。スマートフォン、タブレット、折りたたみ端末で、母港をいつもそばに。', '야하기(Yahagi)는 함대 컬렉션 플레이어를 위한 모바일 브라우저이자 정보 보조 도구입니다. 스마트폰, 태블릿, 폴더블 기기에서 모항을 언제나 곁에 두세요.', 'Yahagi is a mobile browser and information companion for KanColle players. Keep your home port close on phones, tablets and foldables.'],
-  ['把母港，', '把母港，', '母港を、', '모항을, ', 'Your home port, '],
-  ['带在身边。', '帶在身邊。', 'いつもそばに。', '언제나 곁에.', 'wherever you go.'],
-  ['在移动设备上，', '在行動裝置上，', 'モバイル端末で、', '모바일 기기에서 ', 'On your mobile device, '],
+  ['提督，', '提督，', '提督、', '제독님, ', 'Admiral, '],
+  ['欢迎回到鎮守府。', '歡迎回到鎮守府。', '鎮守府へおかえりなさい。', '진수부에 돌아오신 걸 환영해요.', 'welcome back to base.'],
+  ['在移动设备上，随时随地', '在行動裝置上，隨時隨地', 'モバイル端末で、いつでもどこでも', '모바일 기기에서 언제 어디서나 ', 'On mobile, anytime, anywhere, '],
   ['游玩、查看舰队、任务与日常规划。', '遊玩、查看艦隊、任務與日常規劃。', 'ゲームをプレイし、艦隊・任務・日々の計画を確認。', '게임을 즐기고 함대와 임무를 확인하며 일정을 계획하세요.', 'play, check your fleet and quests, and plan your day.'],
 
   ['功能一览｜ヤハギ YAHAGI', '功能一覽｜ヤハギ YAHAGI', '機能一覧｜ヤハギ YAHAGI', '기능 소개｜ヤハギ YAHAGI', 'Features | Yahagi YAHAGI'],
