@@ -126,11 +126,19 @@ npm run build
 域名 DNS 生效并启用 HTTPS 后，按顺序完成以下操作：
 
 1. 验证六页、`/robots.txt`、`/sitemap.xml` 在正式域名正常访问，HTTP 和 `www` 指向统一的 HTTPS 正式网址。
-2. 在 [Google Search Console](https://search.google.com/search-console/) 添加 Domain 资源 `yahagi.xyz`。将 Google 实际生成的 TXT 验证记录添加到 GoDaddy DNS，验证后保留该 TXT。提交 `https://yahagi.xyz/sitemap.xml`，并在网址检查中请求抓取首页、功能页和下载页。
+2. 在 [Google Search Console](https://search.google.com/search-console/) 添加网域资源 `yahagi.xyz`。按平台实际提供的方法，将 TXT 或 CNAME 验证记录添加到 GoDaddy DNS，验证后继续保留验证记录。提交 `https://yahagi.xyz/sitemap.xml`，并在网址检查中请求抓取首页、功能页和下载页。
 3. 在 [Bing Webmaster Tools](https://www.bing.com/webmasters/) 添加网站，使用平台提供的验证方法证明所有权，再提交同一份 sitemap。若选择从 Google 导入，先检查其请求的账号授权范围。
 4. 如需百度曝光，在 [百度搜索资源平台](https://ziyuan.baidu.com/) 添加 HTTPS 网站并按平台实际提供的方法验证，使用普通收录工具提交六个正式网址；sitemap 提交能力以账号后台为准。
 5. 在应用仓库的官网字段或 README 中链接正式域名，方便用户和搜索引擎发现；修改另一仓库时另按该仓库的维护约定执行。
 
-验证代码、TXT 值和验证文件必须来自所选搜索平台，不使用占位代码。平台验证尚未完成时，不能将网站标记为已提交或已收录。提交只帮助发现网站，不保证收录、排名或完成时间。
+验证代码、TXT 或 CNAME 记录值和验证文件必须来自所选搜索平台，不使用占位代码。平台验证尚未完成时，不能将网站标记为已提交或已收录。提交只帮助发现网站，不保证收录、排名或完成时间。
+
+### 当前进度（2026 年 10 月 19 日）
+
+- Google Search Console 网域资源 `yahagi.xyz` 已通过 DNS CNAME 验证；Google TXT 验证记录也仍保留。后续维护 DNS 时应保留这些验证记录，避免影响网站所有权验证。
+- 首页 `https://yahagi.xyz/` 的网址检查显示已收录到 Google，Googlebot 智能手机版抓取成功，允许编入索引，Google 选择的规范网址与该首页一致。
+- 网站地图 `https://yahagi.xyz/sitemap.xml` 已提交，但首次状态显示「无法抓取」，尚未确认 Google 成功读取。公开地址可正常访问，不将提交状态视为读取或收录成功。
+- 功能页与下载页的网址检查均显示尚未收录。功能页手动「请求编入索引」因无法连接 Google reCAPTCHA 服务而失败，刷新后重试结果相同，未取得提交成功确认；下载页未继续执行同一服务下的单页申请。两页都在已提交的网站地图内。网络恢复后可在网址检查中继续申请，不能将本次尝试记作成功提交。
+- 应用仓库 `yamatosaki/yahagi-kancolle-browser` 的 About 官网字段已设置为 `https://yahagi.xyz/`，已通过 GitHub API 核对。
 
 参考：[Google 站点地图](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)、[Google 网站所有权验证](https://support.google.com/webmasters/answer/9008080?hl=en)、[Bing 添加及验证站点](https://www2.bing.com/webmasters/help/add-and-verify-site-12184f8b)、[百度普通收录](https://ziyuan.baidu.com/linksubmit/index)。
