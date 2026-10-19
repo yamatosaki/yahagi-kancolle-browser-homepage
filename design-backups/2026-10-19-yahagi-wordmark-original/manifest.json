@@ -1,0 +1,32 @@
+[
+  {
+    "file": "index.html",
+    "bytes": 5541,
+    "sha256": "047a0adc74bc4928641b6e128ba1b3d7cc5d194c46d03e26a373154d0201fa13"
+  },
+  {
+    "file": "src/styles.css",
+    "bytes": 23801,
+    "sha256": "48bcbb01ba059a9ed719da644e6da528f79c88a088c10cda8b65064dd69c616e"
+  },
+  {
+    "file": "public/assets/wordmark-distress.svg",
+    "bytes": 295,
+    "sha256": "16904d03f709c6087c86aa6d5b3e0f97724b8a74d03f5b5327efafa242bf41c8"
+  },
+  {
+    "file": "public/fonts/barlow-condensed-black-italic.ttf",
+    "bytes": 89324,
+    "sha256": "75338266e60b15dfc5ac0bae8b78fdc5535ea50703ed73c14dc598498ffe8173"
+  },
+  {
+    "file": "public/fonts/OFL.txt",
+    "bytes": 4377,
+    "sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f"
+  },
+  {
+    "file": "preview-before.jpg",
+    "bytes": 150547,
+    "sha256": "1c84fad9cb4c847920c22e0c150a9c37888fa478ced699825e4a9a12d8df4aa2"
+  }
+]
