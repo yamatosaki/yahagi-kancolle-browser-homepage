@@ -39,7 +39,7 @@ const translations = [
 
   ['下载 Android / iOS｜ヤハギ YAHAGI', '下載 Android / iOS｜ヤハギ YAHAGI', 'Android / iOS 版ダウンロード｜ヤハギ YAHAGI', 'Android / iOS 다운로드｜ヤハギ YAHAGI', 'Download for Android / iOS | Yahagi YAHAGI'],
   ['下载 Yahagi KanColle Browser。Android 与 iOS 均提供百度网盘、夸克网盘、GitHub 与直接下载。', '下載 Yahagi KanColle Browser。Android 與 iOS 均提供百度網盤、夸克網盤、GitHub 與直接下載。', 'Yahagi KanColle Browser をダウンロード。Android 版・iOS 版ともに Baidu Netdisk・Quark Drive・GitHub・直接ダウンロードから入手できます。', 'Yahagi KanColle Browser를 다운로드하세요. Android와 iOS 모두 Baidu Netdisk, Quark Drive, GitHub 및 직접 다운로드를 제공합니다.', 'Download Yahagi KanColle Browser for Android or iOS from Baidu Netdisk, Quark Drive, GitHub or a direct package link.'],
-  ['母港，', '母港，', '母港を、', '모항을, ', 'Your home port,'],
+  ['鎮守府，', '鎮守府，', '鎮守府を、', '진수부를, ', 'Your naval base,'],
   ['随时在身边。', '隨時在身邊。', 'いつでもそばに。', '언제나 곁에.', 'always with you.'],
   ['选择你的设备，再选择适合你的下载方式。', '選擇你的裝置，再選擇適合你的下載方式。', 'お使いの端末を選んでから、ダウンロード方法をお選びください。', '사용하는 기기를 고른 뒤 원하는 다운로드 방법을 선택하세요.', 'Choose your device, then the download method that suits you.'],
   ['版本记录', '版本紀錄', 'バージョン履歴', '버전 기록', 'Version history'],
