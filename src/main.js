@@ -2,6 +2,7 @@ import { site, heroAssets, downloads, featureGroups } from './site-config.js';
 import { initDownloadDialog } from './download-dialog.js';
 import { initI18n, onLocaleChange, t } from './i18n.js';
 import { initHomeMotion } from './home-motion.js';
+import { initNavigationMotion } from './navigation-motion.js';
 
 initI18n();
 
@@ -83,6 +84,7 @@ function renderDownloads() {
 }
 renderFeatures();
 renderDownloads();
+const refreshNavigationMotion = initNavigationMotion();
 initDownloadDialog(downloads);
 
 for (const button of document.querySelectorAll('[data-back-to-top]')) {
@@ -141,6 +143,7 @@ desktopMedia.addEventListener('change', () => { if (desktopMedia.matches) closeM
 
 renderMenuLabel();
 onLocaleChange(() => {
+  refreshNavigationMotion?.();
   renderFeatures();
   renderDownloads();
   renderMenuLabel();

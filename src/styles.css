@@ -1,6 +1,7 @@
 @import "./typography.css";
 @import "./project-pages.css";
 @import "./home-motion.css";
+@import "./navigation-motion.css";
 @font-face{font-family:"Yahagi Display";src:url("/fonts/barlow-condensed-black-italic.ttf") format("truetype");font-style:italic;font-weight:900;font-display:swap}
 @font-face{font-family:"HarmonyOS Sans SC";src:url("/fonts/HarmonyOS_Sans_SC.ttf") format("truetype");font-style:normal;font-weight:40 900;font-display:swap}
 @font-face{font-family:"HarmonyOS Sans TC";src:url("/fonts/HarmonyOS_Sans_TC.ttf") format("truetype");font-style:normal;font-weight:40 900;font-display:swap}

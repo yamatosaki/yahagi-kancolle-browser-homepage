@@ -1,0 +1,108 @@
+/* Keep the header steady while the page and active underline change. */
+.site-header { view-transition-name: site-header; }
+.primary-nav.has-motion { position: relative; isolation: isolate; }
+.nav-active-indicator,
+.nav-hover-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  transform-origin: left top;
+  pointer-events: none;
+  opacity: 0;
+}
+.nav-active-indicator {
+  z-index: 1;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 2px 9px rgb(36 86 255 / 14%);
+  view-transition-name: nav-active;
+}
+.nav-hover-indicator {
+  z-index: -1;
+  background: linear-gradient(110deg, rgb(36 86 255 / 2%), rgb(36 86 255 / 9%));
+  clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+}
+.motion-positioned .nav-hover-indicator {
+  transition: transform .26s cubic-bezier(.22, 1, .36, 1), opacity .16s;
+}
+.nav-active-indicator.is-visible,
+.nav-hover-indicator.is-visible { opacity: 1; }
+.primary-nav.has-motion .nav-link::after { display: none; }
+.primary-nav .nav-link { transition: translate .24s; }
+.primary-nav .nav-link:active { translate: 0 1px; }
+
+/* Cross-document snapshots use the browser's real navigation, without a delay. */
+::view-transition-group(*) { animation-duration: .36s; animation-timing-function: cubic-bezier(.22, 1, .36, 1); }
+::view-transition-old(root) { animation: page-content-leave .12s ease-out both; }
+::view-transition-new(root) { animation: page-content-enter .36s cubic-bezier(.22, 1, .36, 1) both; }
+::view-transition-old(site-header) { animation: nav-header-leave .16s ease-out both; }
+::view-transition-new(site-header) { animation: nav-header-enter .2s ease-out both; }
+::view-transition-old(nav-active),
+::view-transition-new(nav-active) { height: 100%; }
+::view-transition { pointer-events: none; }
+::view-transition-group(nav-scan) {
+  z-index: 1;
+  animation: nav-scan .4s ease-out both;
+}
+::view-transition-old(nav-scan) { display: none; }
+::view-transition-new(nav-scan) { animation: none; mix-blend-mode: normal; }
+
+/* A short entrance also works when native page transitions are unavailable. */
+.page-enter #main { animation: page-content-enter .36s cubic-bezier(.22, 1, .36, 1) both; }
+.page-transition-scan {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(36 86 255 / 70%), transparent);
+  opacity: 0;
+  view-transition-name: nav-scan;
+}
+[data-navigation-running] .page-transition-scan { opacity: 1; }
+.page-enter .page-transition-scan { animation: nav-scan .4s ease-out both; }
+@keyframes page-content-leave {
+  to { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes page-content-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nav-header-leave { to { opacity: 0; } }
+@keyframes nav-header-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes nav-scan {
+  from { opacity: 0; transform: translateX(-60vw); }
+  30% { opacity: 1; }
+  to { opacity: 0; transform: translateX(100vw); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .primary-nav .nav-link:hover { translate: 0 -1px; }
+}
+@media (max-width: 1100px) {
+  .primary-nav.has-motion { position: absolute; }
+  .nav-active-indicator,
+  .nav-hover-indicator { display: none; }
+  .primary-nav.has-motion .nav-link::after { display: block; }
+  .primary-nav.is-open { transform-origin: top right; animation: nav-menu-enter .26s cubic-bezier(.22, 1, .36, 1) both; }
+  @keyframes nav-menu-enter {
+    from { opacity: 0; transform: translateY(-8px) scale(.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  ::view-transition,
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+  .page-enter #main,
+  .page-enter .page-transition-scan,
+  .primary-nav.is-open { animation: none; }
+  .primary-nav .nav-link,
+  .primary-nav .nav-link:hover,
+  .primary-nav .nav-link:active { translate: none; }
+  .motion-positioned .nav-hover-indicator { transition: none; }
+}

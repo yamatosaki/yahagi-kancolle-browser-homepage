@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>@view-transition{navigation:auto}@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}}</style>
     <meta name="theme-color" content="#2456ff" />
     <meta name="description" content="Yahagi 是完全非盈利、非官方的第三方通用浏览器工具。了解项目用途、软件保证与使用风险说明。"  data-i18n-attrs="content"/>
     <title data-i18n>免责声明｜ヤハギ YAHAGI</title>
@@ -14,8 +15,10 @@
     <meta property="og:url" content="https://yahagi.xyz/disclaimer.html" />
     <link rel="icon" href="./favicon-yahagi.png" type="image/png" sizes="64x64" />
     <link rel="stylesheet" href="./src/styles.css" />
+    <script src="/navigation-lifecycle.js"></script>
   </head>
   <body data-page="disclaimer">
+    <div class="page-transition-scan" aria-hidden="true"></div>
     <a class="skip-link" href="#main" data-i18n>跳到主要内容</a>
     <header class="site-header" id="site-header">
       <a class="brand" href="./" aria-label="ヤハギ 首页" data-i18n-attrs="aria-label"><span class="brand-name">ヤハギ<small>YAHAGI / KANCOLLE BROWSER</small></span></a>

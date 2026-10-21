@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>@view-transition{navigation:auto}@media(prefers-reduced-motion:reduce){@view-transition{navigation:none}}</style>
     <meta name="theme-color" content="#2456ff" />
     <meta name="description" content="了解 Yahagi 的舰队与战斗、任务中心、改修开发远征、编成海域资料、航海日志备份和多屏移动体验。"  data-i18n-attrs="content"/>
     <title data-i18n>功能一览｜ヤハギ YAHAGI</title>
@@ -14,8 +15,10 @@
     <meta property="og:url" content="https://yahagi.xyz/features.html" />
     <link rel="icon" href="./favicon-yahagi.png" type="image/png" sizes="64x64" />
     <link rel="stylesheet" href="./src/styles.css" />
+    <script src="/navigation-lifecycle.js"></script>
   </head>
   <body data-page="features">
+    <div class="page-transition-scan" aria-hidden="true"></div>
     <a class="skip-link" href="#main" data-i18n>跳到主要内容</a>
     <header class="site-header" id="site-header">
       <a class="brand" href="./" aria-label="ヤハギ 首页" data-i18n-attrs="aria-label"><span class="brand-name">ヤハギ<small>YAHAGI / KANCOLLE BROWSER</small></span></a>
