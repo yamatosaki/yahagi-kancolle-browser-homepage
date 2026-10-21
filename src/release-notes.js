@@ -95,6 +95,16 @@ export function initReleaseNotes() {
   let selectedTag = null;
   let selectedLocale = null;
 
+  function isLatestStable(release) {
+    return !release.prerelease && release.id === latestStable?.id;
+  }
+
+  function optionLabel(release) {
+    const latest = isLatestStable(release) ? ' New' : '';
+    const prerelease = release.prerelease ? ` · ${t('预发布')}` : '';
+    return `${versionLabel(release.tag)}${latest} · ${formatDate(release.publishedAt)}${prerelease}`;
+  }
+
   count.textContent = t('{count} 个版本', { count: releases.length });
   syncDate.textContent = formatDate(archive.syncedAt);
   if (syncDate.textContent) syncDate.dateTime = archive.syncedAt;
@@ -136,9 +146,9 @@ export function initReleaseNotes() {
     date.textContent = formatDate(release.publishedAt);
     date.dateTime = release.publishedAt;
     badge.hidden = false;
-    badge.textContent = t(release.prerelease ? '预发布' : release.id === latestStable?.id ? '最新稳定版' : '正式版');
+    badge.textContent = t(release.prerelease ? '预发布' : isLatestStable(release) ? '最新稳定版' : '正式版');
     badge.classList.toggle('is-prerelease', release.prerelease);
-    badge.classList.toggle('is-latest', !release.prerelease && release.id === latestStable?.id);
+    badge.classList.toggle('is-latest', isLatestStable(release));
 
     const originalUrl = safeUrl(release.url, archive.repositoryUrl);
     original.hidden = !originalUrl;
@@ -198,7 +208,15 @@ export function initReleaseNotes() {
     link.className = 'release-version';
     link.href = `#${encodeURIComponent(release.tag)}`;
     const label = document.createElement('span');
+    label.className = 'release-version-label';
     label.textContent = versionLabel(release.tag);
+    if (isLatestStable(release)) {
+      const indicator = document.createElement('span');
+      indicator.className = 'release-new';
+      indicator.lang = 'en';
+      indicator.textContent = 'New';
+      label.append(' ', indicator);
+    }
     const published = document.createElement('time');
     published.dateTime = release.publishedAt;
     published.textContent = formatDate(release.publishedAt);
@@ -213,7 +231,7 @@ export function initReleaseNotes() {
 
     const option = document.createElement('option');
     option.value = release.tag;
-    option.textContent = `${versionLabel(release.tag)} · ${formatDate(release.publishedAt)}${release.prerelease ? ` · ${t('预发布')}` : ''}`;
+    option.textContent = optionLabel(release);
     select.append(option);
   });
 
@@ -242,7 +260,7 @@ export function initReleaseNotes() {
     count.textContent = t('{count} 个版本', { count: releases.length });
     [...select.options].forEach((option) => {
       const release = releases.find((item) => item.tag === option.value);
-      option.textContent = `${versionLabel(release.tag)} · ${formatDate(release.publishedAt)}${release.prerelease ? ` · ${t('预发布')}` : ''}`;
+      option.textContent = optionLabel(release);
     });
     showRelease(releases.find((release) => release.tag === selectedTag) || releases[0]);
   });

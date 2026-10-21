@@ -10,16 +10,18 @@
 .related-links a:hover{color:var(--accent)}
 
 /* Version index and a single readable release keep the archive manageable. */
-.release-layout{display:grid;grid-template-columns:205px minmax(0,1fr);align-items:start;gap:75px;border-top:1px solid var(--ink);padding-top:36px}
+.release-layout{display:grid;grid-template-columns:clamp(240px,14vw,360px) minmax(0,1fr);align-items:start;gap:75px;border-top:1px solid var(--ink);padding-top:36px}
 .release-sidebar{position:sticky;top:25px;min-width:0}
-.release-index-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px;font-size:12px}
-.release-index-label>span:last-child{color:var(--muted);font-size:10px}
+.release-index-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px;font-size:clamp(14px,.65vw,20px)}
+.release-index-label>span:last-child{color:var(--muted);font-size:clamp(12px,.5vw,15px)}
 .release-list{display:flex;flex-direction:column}
-.release-version{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 13px 15px 16px;border-left:1px solid var(--line);color:var(--muted);font-size:13px;transition:color .2s,border-color .2s,background .2s}
-.release-version time{font-size:9px}
+.release-version{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 13px 18px 16px;border-left:1px solid var(--line);color:var(--muted);font-size:clamp(16px,.78vw,22px);transition:color .2s,border-color .2s,background .2s}
+.release-version-label{display:inline-flex;align-items:baseline;gap:8px;white-space:nowrap}
+.release-new{color:var(--accent);font-size:.72em;font-weight:600;line-height:1}
+.release-version time{font-size:clamp(11px,.5vw,15px);white-space:nowrap}
 .release-version.is-active{color:var(--accent);border-left:2px solid var(--accent);padding-left:15px;background:linear-gradient(90deg,rgb(36 86 255 / 6%),transparent)}
 .release-version:hover{color:var(--accent)}
-.release-sync{margin:24px 0 0;color:var(--muted);font-size:9px;line-height:1.8}
+.release-sync{margin:24px 0 0;color:var(--muted);font-size:clamp(11px,.45vw,14px);line-height:1.8}
 .release-mobile-picker{display:none}
 .release-article{min-width:0;max-width:940px}
 .release-heading{padding:0 0 29px;border-bottom:1px solid var(--line);margin-bottom:29px}
@@ -86,7 +88,8 @@
 .support-provenance a{color:var(--accent)}
 
 @media(max-width:1050px){
-  .release-layout,.editorial-block{grid-template-columns:175px minmax(0,1fr);gap:42px}
+  .editorial-block{grid-template-columns:175px minmax(0,1fr);gap:42px}
+  .release-layout{gap:42px}
   .legal-layout{gap:55px}
 }
 @media(max-width:900px){
@@ -94,8 +97,8 @@
   .release-sidebar{top:0;z-index:5;padding:13px 0;background:var(--paper);border-bottom:1px solid var(--line)}
   .release-index-label,.release-list,.release-sync{display:none}
   .release-mobile-picker{display:flex;align-items:center;gap:20px}
-  .release-mobile-picker label{flex-shrink:0;color:var(--muted);font-size:11px}
-  .release-mobile-picker select{flex:1;min-width:0;max-width:370px;padding:13px 32px 13px 12px;background:transparent;border:1px solid #c5cad7;border-radius:4px;color:var(--ink);font:inherit;font-size:12px}
+  .release-mobile-picker label{flex-shrink:0;color:var(--muted);font-size:13px}
+  .release-mobile-picker select{flex:1;min-width:0;max-width:370px;padding:13px 32px 13px 12px;background:transparent;border:1px solid #c5cad7;border-radius:4px;color:var(--ink);font:inherit;font-size:14px}
   .release-mobile-picker select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
   .release-heading h2{scroll-margin-top:100px}
   .legal-layout{grid-template-columns:1fr;gap:30px}
