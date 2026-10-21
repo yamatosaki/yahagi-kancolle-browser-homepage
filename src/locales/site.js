@@ -2,6 +2,8 @@
 // progressive enhancement. Each row supplies Traditional Chinese, Japanese,
 // Korean and English in that order.
 const translations = [
+  ['开场动画', '開場動畫', 'オープニング', '시작 애니메이션', 'Opening animation'],
+  ['跳过开场', '跳過開場', 'スキップ', '건너뛰기', 'Skip intro'],
   ['网站语言', '網站語言', '表示言語', '사이트 언어', 'Website language'],
   ['回到顶部', '回到頂部', 'ページ上部へ', '맨 위로', 'Back to top'],
   ['跳到主要内容', '跳至主要內容', 'メインコンテンツへ移動', '본문으로 건너뛰기', 'Skip to main content'],

@@ -26,6 +26,23 @@
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body data-page="home">
+    <section class="boot-screen" id="home-intro" aria-label="开场动画" data-i18n-attrs="aria-label" hidden>
+      <div class="boot-grid" aria-hidden="true"></div>
+      <div class="boot-topline" aria-hidden="true"><span><i></i> YH / FLEET TERMINAL</span><span>MOBILE ACCESS / PERSONAL OPERATIONS</span></div>
+      <div class="boot-center" aria-hidden="true">
+        <div class="boot-reticle"><span></span><span></span></div>
+        <svg class="boot-emblem" viewBox="0 0 64 64" fill="currentColor"><path d="M7 10h13l12 19L44 10h13L38 41v13H26V41Z"/></svg>
+        <p class="boot-caption">YOUR FLEET, WITH YOU.</p>
+        <p class="boot-wordmark"><span class="boot-wordmark-ink">YAHAGI</span></p>
+        <p class="boot-subtitle">KANCOLLE BROWSER <span>起動シーケンス</span></p>
+      </div>
+      <div class="boot-readout" aria-hidden="true">
+        <div class="boot-progress-heading"><span class="boot-state" data-boot-state>INITIALIZING</span><span class="boot-percent"><span data-boot-percent>00</span><small>%</small></span></div>
+        <div class="boot-progress-track"><span data-boot-progress></span></div>
+        <div class="boot-stages"><span data-boot-stage>01 / INITIALIZE</span><span data-boot-stage>02 / VISUAL SYNC</span><span data-boot-stage>03 / READY</span></div>
+      </div>
+      <div class="boot-bottomline"><span aria-hidden="true">YAHAGI SYSTEM / BOOT SEQUENCE</span><button class="boot-skip" type="button" data-skip-intro><span data-i18n>跳过开场</span><span aria-hidden="true">↗</span></button></div>
+    </section>
     <a class="skip-link" href="#main" data-i18n>跳到主要内容</a>
     <header class="site-header" id="site-header">
       <a class="brand" href="./" aria-label="ヤハギ 首页" data-i18n-attrs="aria-label"><span class="brand-name">ヤハギ<small>YAHAGI / KANCOLLE BROWSER</small></span></a>
@@ -45,7 +62,7 @@
 
     <main id="main">
       <section class="hero" id="home" aria-labelledby="hero-title">
-        <div class="hero-art" aria-hidden="true"><div class="hero-glow"></div><div class="portrait-frame"><img class="art-portrait" src="./assets/hero/yahagi-portrait.png?v=a7d6b291" data-hero-layer="portrait" alt="" fetchpriority="high" /></div><div class="hero-mist"></div></div>
+        <div class="hero-art" aria-hidden="true"><div class="hero-glow"></div><div class="hero-grid"></div><div class="portrait-frame"><img class="art-portrait" src="./assets/hero/yahagi-portrait.png?v=a7d6b291" data-hero-layer="portrait" alt="" fetchpriority="high" /></div><div class="hero-mist"></div><div class="hero-scan"></div></div>
         <div class="hero-content">
           <div class="hero-intro">
             <p class="hero-product-label"><span aria-hidden="true"></span>YOUR FLEET, WITH YOU.</p>
@@ -58,6 +75,7 @@
           </div>
           <div class="hero-signature"><h1 class="hero-wordmark" id="hero-title">YAHAGI</h1></div>
         </div>
+        <div class="hero-telemetry" hidden data-motion-status><span class="hero-online" aria-hidden="true"><i></i> ALL SYSTEMS READY</span></div>
       </section>
     </main>
 

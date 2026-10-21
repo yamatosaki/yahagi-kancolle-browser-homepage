@@ -42,7 +42,7 @@ npm run deploy
 
 ## 当前页面
 
-- `index.html`：首页，仅展示彩色人物大头、渐变、原版粗斜体双切线字标、产品文案和双平台入口；底部保留页脚。
+- `index.html`：首页，展示彩色人物大头、渐变、原版粗斜体双切线字标、产品文案和双平台入口；底部保留页脚。首次进入时播放可跳过的启动动画，同一标签页会话内不重复播放，不提供重播按钮。
 - `features.html`：六组纯文字功能介绍，包括舰队与战斗、任务中心、改修开发远征、编成与海域、航海日志备份、多屏移动体验。
 - `download.html`：Android/iOS 下载入口、版本信息和发布记录链接，沿用全站浅色界面。
 - `updates.html`：按版本阅读项目 GitHub Releases 的对应语言发布说明。
@@ -60,6 +60,7 @@ npm run deploy
 - 根目录六个 HTML 文件：各页面结构与语义化容器。
 - `vite.config.js`：六个 HTML 构建入口。
 - `src/main.js`：共享内容生成、导航与下载入口绑定，按当前页面存在的容器初始化。
+- `src/home-motion.js`、`src/home-motion.css`：首页启动序列、首屏分层入场、指针视差与按钮扫光。图片等待有超时兜底；无 JavaScript 时直接显示内容，系统开启减少动态效果时跳过开场和视差。
 - `src/i18n.js`、`src/locales/`：语言选择、偏好保存，以及静态页面、动态内容和日志界面的译文；`?lang=ja` 等链接可直接指定语言。
 - `src/download-dialog.js`：当前平台的来源选择、弹窗关闭和焦点返回。
 - `src/release-notes.js`：更新日志版本选择与发布正文渲染；Marked 解析 Markdown，DOMPurify 清理生成的 HTML。

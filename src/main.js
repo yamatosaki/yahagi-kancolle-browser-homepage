@@ -1,10 +1,12 @@
 import { site, heroAssets, downloads, featureGroups } from './site-config.js';
 import { initDownloadDialog } from './download-dialog.js';
 import { initI18n, onLocaleChange, t } from './i18n.js';
+import { initHomeMotion } from './home-motion.js';
 
 initI18n();
 
 for (const image of document.querySelectorAll('[data-hero-layer]')) image.src = heroAssets[image.dataset.heroLayer];
+initHomeMotion();
 for (const link of document.querySelectorAll('[data-repo-link]')) link.href = site.repoUrl;
 for (const link of document.querySelectorAll('[data-releases-link]')) link.href = site.releasesUrl;
 for (const link of document.querySelectorAll('[data-issues-link]')) link.href = site.issuesUrl;
