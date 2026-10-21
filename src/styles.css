@@ -40,20 +40,20 @@ img{display:block;max-width:100%}
 .brand-name small::before{content:"";flex:0 0 12px;height:2px;background:var(--accent);opacity:.7;transform:skewX(-25deg);transition:opacity .2s}
 .brand:hover .brand-name{color:#233b57}
 .brand:hover .brand-name small::before{opacity:1}
-.primary-nav{display:flex;align-items:center;gap:28px;margin-left:auto}
-.nav-link{position:relative;display:inline-flex;gap:5px;align-items:center;padding:13px 0;font-size:12px;font-weight:500;transition:color .2s}
+.primary-nav{display:flex;align-items:center;gap:clamp(28px,1.4vw,52px);margin-left:auto}
+.nav-link{position:relative;display:inline-flex;gap:5px;align-items:center;padding:13px 0;font-size:clamp(12px,.75vw,24px);font-weight:500;transition:color .2s}
 .nav-link::after{content:"";position:absolute;left:0;bottom:3px;width:16px;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .2s}
 .nav-link.is-active{color:var(--accent)}
 .nav-link.is-active::after{transform:scaleX(1)}
 .nav-link:hover{color:var(--accent)}
 .nav-github{margin-left:3px;padding-left:29px;border-left:1px solid rgb(98 101 112 / 25%)}
-.nav-github span{font-size:15px}
+.nav-github span{font-size:clamp(15px,.9375vw,30px)}
 .menu-toggle{display:none}
 .header-actions{display:flex;align-items:center;gap:18px;flex-shrink:0}
 .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .language-picker{position:relative;display:block;flex:0 0 auto;padding-block:6px}
 .language-picker::after{content:"";position:absolute;right:10px;top:50%;width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-70%) rotate(45deg);pointer-events:none}
-.language-picker select{display:block;appearance:none;width:96px;height:32px;min-height:32px;padding:5px 22px 5px 8px;border:1px solid rgb(98 101 112 / 30%);border-radius:5px;background:rgb(247 248 250 / 75%);color:var(--ink);font:inherit;font-size:11px;line-height:1.4;cursor:pointer}
+.language-picker select{display:block;appearance:none;width:clamp(96px,5.5vw,176px);height:clamp(32px,1.5vw,48px);min-height:32px;padding:5px 22px 5px 8px;border:1px solid rgb(98 101 112 / 30%);border-radius:5px;background:rgb(247 248 250 / 75%);color:var(--ink);font:inherit;font-size:clamp(11px,.625vw,20px);line-height:1.4;cursor:pointer}
 .language-picker select:hover{border-color:var(--accent)}
 .language-picker select:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .nav-link{white-space:nowrap}
