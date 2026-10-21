@@ -146,7 +146,7 @@ export function initReleaseNotes() {
     date.textContent = formatDate(release.publishedAt);
     date.dateTime = release.publishedAt;
     badge.hidden = false;
-    badge.textContent = t(release.prerelease ? '预发布' : isLatestStable(release) ? '最新稳定版' : '正式版');
+    badge.textContent = t(release.prerelease ? '预发布' : isLatestStable(release) ? '最新版' : '正式版');
     badge.classList.toggle('is-prerelease', release.prerelease);
     badge.classList.toggle('is-latest', isLatestStable(release));
 
