@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>@view-transition{navigation:auto}@media (prefers-reduced-motion:reduce){@view-transition{navigation:none}}</style>
     <meta name="theme-color" content="#2456ff" />
     <meta name="description" content="下载 Yahagi KanColle Browser。Android 与 iOS 均提供百度网盘、夸克网盘、GitHub 与直接下载。"  data-i18n-attrs="content"/>
     <title data-i18n>下载 Android / iOS｜ヤハギ YAHAGI</title>
@@ -14,10 +15,12 @@
     <meta property="og:url" content="https://yahagi.xyz/download.html" />
     <link rel="icon" href="./favicon-yahagi.png" type="image/png" sizes="64x64" />
     <link rel="preload" href="./fonts/barlow-condensed-black-italic.ttf" as="font" type="font/ttf" crossorigin />
-    <script type="module" crossorigin src="./assets/main-DCt1rG9F.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-BUDwkVd1.css">
+    <script src="./navigation-lifecycle.js"></script>
+    <script type="module" crossorigin src="./assets/main-CMtMwXwr.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-ButyIf8A.css">
   </head>
   <body data-page="download">
+    <div class="page-transition-scan" aria-hidden="true"></div>
     <a class="skip-link" href="#main" data-i18n>跳到主要内容</a>
     <header class="site-header" id="site-header">
       <a class="brand" href="./" aria-label="ヤハギ 首页" data-i18n-attrs="aria-label"><span class="brand-name">ヤハギ<small>YAHAGI / KANCOLLE BROWSER</small></span></a>
