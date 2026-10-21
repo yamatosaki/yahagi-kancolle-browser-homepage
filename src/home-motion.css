@@ -173,7 +173,8 @@
 @keyframes boot-rotate { to { rotate: 90deg; } }
 @keyframes boot-mark-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes boot-word-in { from { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-20px); } to { opacity: 1; clip-path: inset(0); transform: translateX(0); } }
-@keyframes boot-dismiss { 0%, 10% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } 100% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); } }
+/* A rectangular curtain keeps the content stationary behind the original wipe. */
+@keyframes boot-dismiss { 0%, 10% { clip-path: inset(0); } 100% { clip-path: inset(0 0 100% 0); } }
 @keyframes portrait-arrive { from { opacity: 0; transform: translateX(-32px) scale(1.035); } to { opacity: 1; transform: translateX(0) scale(1); } }
 @keyframes interface-arrive { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes wordmark-arrive { from { opacity: 0; transform: translateY(36px); clip-path: inset(0 0 100%); } to { opacity: 1; transform: translateY(0); clip-path: inset(0); } }

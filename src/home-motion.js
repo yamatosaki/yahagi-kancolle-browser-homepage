@@ -48,6 +48,8 @@ export function initHomeMotion() {
   if (body.dataset.page !== 'home' || !screen) return;
 
   const hero = document.querySelector('.hero');
+  const portraitFrame = hero.querySelector('.portrait-frame');
+  const heroGrid = hero.querySelector('.hero-grid');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   const statusPanel = document.querySelector('[data-motion-status]');
@@ -63,8 +65,8 @@ export function initHomeMotion() {
   function resetPointer() {
     cancelAnimationFrame(pointerFrame);
     pointerFrame = 0;
-    hero.style.removeProperty('--hero-x');
-    hero.style.removeProperty('--hero-y');
+    portraitFrame?.style.removeProperty('translate');
+    heroGrid?.style.removeProperty('translate');
   }
 
   function updatePreferences() {
@@ -85,6 +87,7 @@ export function initHomeMotion() {
     let disposed = false;
     let completionTimer = 0;
     let exitTimer = 0;
+    let revealFrame = 0;
 
     function dispose() {
       if (disposed) return;
@@ -93,6 +96,7 @@ export function initHomeMotion() {
       loadingController.abort();
       clearTimeout(completionTimer);
       clearTimeout(exitTimer);
+      cancelAnimationFrame(revealFrame);
       screen.hidden = true;
       screen.classList.remove('is-leaving');
       body.classList.remove('motion-loading');
@@ -127,6 +131,7 @@ export function initHomeMotion() {
     }
 
     function reveal() {
+      revealFrame = 0;
       if (released || disposed) return;
       released = true;
       loadingController.abort();
@@ -134,6 +139,12 @@ export function initHomeMotion() {
       body.classList.add('motion-revealed');
       screen.classList.add('is-leaving');
       exitTimer = window.setTimeout(dispose, 760);
+    }
+
+    function queueReveal() {
+      if (released || disposed || revealFrame) return;
+      // Begin the curtain and the hero layers together at a rendering boundary.
+      revealFrame = requestAnimationFrame(reveal);
     }
 
     stopOpening = skip;
@@ -162,11 +173,11 @@ export function initHomeMotion() {
         state.textContent = result.status === 'timeout' ? 'FALLBACK / CONTINUE'
           : result.failed ? 'READY WITH FALLBACK' : 'READY TO LAUNCH';
         // The completed mark gets a short finale; resource progress has no timed increments.
-        completionTimer = window.setTimeout(reveal, result.status === 'timeout' ? 0 : completionDuration);
+        completionTimer = window.setTimeout(queueReveal, result.status === 'timeout' ? 0 : completionDuration);
       } catch {
         if (disposed || released) return;
         state.textContent = 'FALLBACK / CONTINUE';
-        reveal();
+        queueReveal();
       }
     }
     loadResources();
@@ -174,13 +185,16 @@ export function initHomeMotion() {
 
   hero.addEventListener('pointermove', (event) => {
     if (reducedMotion.matches || !finePointer.matches || body.classList.contains('motion-loading')) return;
-    const bounds = hero.getBoundingClientRect();
-    pointerX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 12;
-    pointerY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 8;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
     if (pointerFrame) return;
     pointerFrame = requestAnimationFrame(() => {
-      hero.style.setProperty('--hero-x', `${pointerX.toFixed(2)}px`);
-      hero.style.setProperty('--hero-y', `${pointerY.toFixed(2)}px`);
+      const bounds = hero.getBoundingClientRect();
+      const x = (((pointerX - bounds.left) / bounds.width - 0.5) * 12).toFixed(2);
+      const y = (((pointerY - bounds.top) / bounds.height - 0.5) * 8).toFixed(2);
+      // Update only the moving layers; inherited variables would restyle the whole hero.
+      if (portraitFrame) portraitFrame.style.translate = `${x}px ${y}px`;
+      if (heroGrid) heroGrid.style.translate = `calc(${x}px * -.6) calc(${y}px * -.6)`;
       pointerFrame = 0;
     });
   }, { passive: true });
