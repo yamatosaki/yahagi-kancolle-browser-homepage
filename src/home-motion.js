@@ -1,13 +1,48 @@
-const sessionKey = 'yahagi-opening-seen';
+const homeNavigationKey = 'yahagi-home-navigation';
 const sequenceDuration = 1800;
 const assetDeadline = 2800;
+
+function initOpeningNavigation() {
+  let returnTo = null;
+  try {
+    returnTo = sessionStorage.getItem(homeNavigationKey);
+    sessionStorage.removeItem(homeNavigationKey);
+  } catch { /* Without storage, opening playback remains available. */ }
+
+  // Only an ordinary same-tab home link suppresses the next opening.
+  document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const link = event.target?.closest?.('a[href]');
+    if (!link || link.hasAttribute('download') || (link.target && link.target.toLowerCase() !== '_self')) return;
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#')) return;
+    try {
+      const destination = new URL(href, window.location.href);
+      const home = new URL('./', window.location.href);
+      if (destination.origin !== home.origin || ![home.pathname, `${home.pathname}index.html`].includes(destination.pathname)) return;
+      sessionStorage.setItem(homeNavigationKey, destination.href);
+    } catch { /* Links continue to work without storage. */ }
+  });
+
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    try { sessionStorage.removeItem(homeNavigationKey); } catch { /* Storage is optional. */ }
+  });
+
+  const navigationType = performance.getEntriesByType('navigation')[0]?.type;
+  if (navigationType === 'reload') return true;
+  if (navigationType === 'back_forward') return false;
+  return returnTo !== window.location.href;
+}
 
 // The page is usable without this enhancement; the opening never owns navigation.
 export function initHomeMotion() {
   const body = document.body;
-  const screen = document.querySelector('#home-intro');
-  if (body.dataset.page !== 'home' || !screen || body.dataset.motionInitialized) return;
+  if (body.dataset.motionInitialized) return;
   body.dataset.motionInitialized = 'true';
+  const playOpening = initOpeningNavigation();
+  const screen = document.querySelector('#home-intro');
+  if (body.dataset.page !== 'home' || !screen) return;
 
   const hero = document.querySelector('.hero');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -50,10 +85,6 @@ export function initHomeMotion() {
     let exitTimer = 0;
     let safetyTimer = 0;
 
-    function rememberOpening() {
-      try { sessionStorage.setItem(sessionKey, '1'); } catch { /* Storage is optional. */ }
-    }
-
     function dispose() {
       if (disposed) return;
       disposed = true;
@@ -67,7 +98,6 @@ export function initHomeMotion() {
       document.removeEventListener('keydown', skipForKeyboard, true);
       document.removeEventListener('focusin', skipForFocus);
       window.removeEventListener('scroll', skip, true);
-      rememberOpening();
       if (skipHadFocus) document.querySelector('.site-header .brand')?.focus({ preventScroll: true });
     }
 
@@ -102,7 +132,6 @@ export function initHomeMotion() {
       body.classList.remove('motion-loading');
       body.classList.add('motion-revealed');
       screen.classList.add('is-leaving');
-      rememberOpening();
       exitTimer = window.setTimeout(dispose, 760);
     }
 
@@ -155,7 +184,5 @@ export function initHomeMotion() {
   window.addEventListener('pagehide', () => { stopOpening(); resetPointer(); });
   updatePreferences();
 
-  let seen = false;
-  try { seen = sessionStorage.getItem(sessionKey) === '1'; } catch { /* Still play without storage. */ }
-  if (!seen) startOpening();
+  if (playOpening) startOpening();
 }

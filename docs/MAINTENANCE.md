@@ -77,7 +77,7 @@ npm run deploy
 - 根目录六个 HTML 文件：各页面结构与语义化容器。
 - `vite.config.js`：六个 HTML 构建入口。
 - `src/main.js`：共享内容生成、导航与下载入口绑定，按当前页面存在的容器初始化。
-- `src/home-motion.js`、`src/home-motion.css`：首页启动序列、首屏分层入场、指针视差与按钮扫光。图片等待有超时兜底；无 JavaScript 时直接显示内容，系统开启减少动态效果时跳过开场和视差。
+- `src/home-motion.js`、`src/home-motion.css`：首页启动序列、首屏分层入场、指针视差与按钮扫光。直接打开或刷新首页会播放开场；从站内其他页面通过首页或品牌链接在当前标签页返回时跳过，浏览器历史返回也不重播。首页另开标签页仍播放。站内返回采用一次性 `sessionStorage` 标记，不再保存“本会话已播放”；标记读取后即清除，刷新优先播放，存储不可用时安全播放。图片等待有超时兜底；无 JavaScript 时直接显示内容，系统开启减少动态效果时跳过开场和视差。
 - `src/i18n.js`、`src/locales/`：语言选择、偏好保存，以及静态页面、动态内容和日志界面的译文；`?lang=ja` 等链接可直接指定语言。
 - `src/download-dialog.js`：当前平台的来源选择、弹窗关闭和焦点返回。
 - `src/release-notes.js`：更新日志版本选择与发布正文渲染；Marked 解析 Markdown，DOMPurify 清理生成的 HTML。
