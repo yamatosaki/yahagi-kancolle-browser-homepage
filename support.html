@@ -13,10 +13,10 @@
     <meta property="og:title" content="赞助与致谢｜ヤハギ YAHAGI" data-i18n-attrs="content" />
     <meta property="og:description" content="通过 GitHub Sponsors、支付宝、微信支付或参与贡献支持 Yahagi，了解项目贡献者与数据支持方。" data-i18n-attrs="content" />
     <meta property="og:url" content="https://yahagi.xyz/support.html" />
-    <link rel="icon" href="./favicon-yahagi.png" type="image/png" sizes="64x64" />
+    <link rel="icon" href="./favicon-yahagi.png" type="image/png" sizes="64x64" />
     <script src="./navigation-lifecycle.js"></script>
-    <script type="module" crossorigin src="./assets/main-DsQfJ8Ze.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-UKl7sPdB.css">
+    <script type="module" crossorigin src="./assets/main-B-pcUGk_.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-Di00MfwB.css">
   </head>
   <body data-page="support">
     <div class="page-transition-scan" aria-hidden="true"></div>
@@ -71,7 +71,15 @@
             <p data-i18n>欢迎提交问题与改进建议，参与兼容性测试、文档、本地化或代码贡献。提交前可以先阅读贡献指南。</p>
             <div class="contribution-links">
               <a href="https://github.com/yamatosaki/yahagi-kancolle-browser/blob/master/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer" data-i18n>贡献指南 <span aria-hidden="true">↗</span></a>
-              <a data-issues-link href="https://github.com/yamatosaki/yahagi-kancolle-browser/issues" target="_blank" rel="noopener noreferrer" data-i18n>反馈问题 <span aria-hidden="true">↗</span></a>
+              <details class="feedback-menu" id="development-feedback-menu">
+                <summary data-i18n>反馈问题</summary>
+                <div class="feedback-panel">
+                  <a class="feedback-channel" data-issues-link href="https://github.com/yamatosaki/yahagi-kancolle-browser/issues" target="_blank" rel="noopener noreferrer"><span><strong>GitHub</strong><span class="feedback-value">Issues</span></span><span aria-hidden="true">↗</span></a>
+                  <a class="feedback-channel" href="mailto:yamatosaki123@gmail.com"><span><strong data-i18n>邮箱</strong><span class="feedback-value">yamatosaki123@gmail.com</span></span><span aria-hidden="true">↗</span></a>
+                  <div class="feedback-channel"><span><strong data-i18n>QQ群</strong><span class="feedback-value" data-feedback-qq>1104904097</span></span><button class="feedback-copy" type="button" data-copy-feedback-qq data-i18n hidden>复制群号</button></div>
+                  <p class="feedback-status" data-feedback-status role="status"></p>
+                </div>
+              </details>
               <a data-repo-link href="https://github.com/yamatosaki/yahagi-kancolle-browser" target="_blank" rel="noopener noreferrer" data-i18n>在 GitHub Star <span aria-hidden="true">↗</span></a>
             </div>
           </div>
@@ -94,8 +102,16 @@
     </main>
 
     <footer class="site-footer section-shell">
-      <div class="footer-top"><button class="back-to-top" type="button" data-back-to-top><span data-i18n>回到顶部</span><span class="back-to-top-arrow" aria-hidden="true">↑</span></button><div class="footer-links"><a href="./disclaimer.html" data-i18n>免责声明</a><a data-issues-link href="https://github.com/yamatosaki/yahagi-kancolle-browser/issues" target="_blank" rel="noopener noreferrer" data-i18n>问题反馈 ↗</a></div></div>
+      <div class="footer-top"><button class="back-to-top" type="button" data-back-to-top><span data-i18n>回到顶部</span><span class="back-to-top-arrow" aria-hidden="true">↑</span></button><div class="footer-links"><a href="./disclaimer.html" data-i18n>免责声明</a><details class="feedback-menu" id="feedback-menu">
+        <summary data-i18n>问题反馈</summary>
+        <div class="feedback-panel">
+          <a class="feedback-channel" data-issues-link href="https://github.com/yamatosaki/yahagi-kancolle-browser/issues" target="_blank" rel="noopener noreferrer"><span><strong>GitHub</strong><span class="feedback-value">Issues</span></span><span aria-hidden="true">↗</span></a>
+          <a class="feedback-channel" href="mailto:yamatosaki123@gmail.com"><span><strong data-i18n>邮箱</strong><span class="feedback-value">yamatosaki123@gmail.com</span></span><span aria-hidden="true">↗</span></a>
+          <div class="feedback-channel"><span><strong data-i18n>QQ群</strong><span class="feedback-value" data-feedback-qq>1104904097</span></span><button class="feedback-copy" type="button" data-copy-feedback-qq data-i18n hidden>复制群号</button></div>
+          <p class="feedback-status" data-feedback-status role="status"></p>
+        </div>
+      </details></div></div>
       <div class="footer-bottom"><p data-i18n>社区开发的非官方工具。游戏名称、商标与素材的相关权利归各自权利人所有。</p><span>MADE FOR ADMIRALS. / MIT LICENSE</span></div>
-    </footer>
+    </footer>
   </body>
 </html>
