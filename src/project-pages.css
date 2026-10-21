@@ -77,8 +77,8 @@
 .sponsors-link>span:last-child{font-size:var(--text-subtitle)}
 .contribution-links{display:flex;flex-wrap:wrap;gap:10px 23px}
 .contribution-links{margin-top:25px;font-size:var(--text-small)}
-.contribution-links a{padding-bottom:3px;border-bottom:1px solid var(--line)}
-.contribution-links a:hover{color:var(--accent);border-color:var(--accent)}
+.contribution-links>a{padding-bottom:3px;border-bottom:1px solid var(--line)}
+.contribution-links>a:hover{color:var(--accent);border-color:var(--accent)}
 .credit-list{display:grid;gap:29px;margin:0;padding:0;list-style:none}
 .credit-list h3{margin:0 0 9px;font-size:var(--text-subtitle);line-height:1.6;font-weight:500}
 .credit-list h3 a:hover{color:var(--accent)}

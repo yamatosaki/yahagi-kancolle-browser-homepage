@@ -1,10 +1,12 @@
 import { site, heroAssets, downloads, featureGroups } from './site-config.js';
 import { initDownloadDialog } from './download-dialog.js';
+import { initFeedbackMenus } from './feedback-menu.js';
 import { initI18n, onLocaleChange, t } from './i18n.js';
 import { initHomeMotion } from './home-motion.js';
 import { initNavigationMotion } from './navigation-motion.js';
 
 initI18n();
+initFeedbackMenus();
 
 for (const image of document.querySelectorAll('[data-hero-layer]')) image.src = heroAssets[image.dataset.heroLayer];
 initHomeMotion();
