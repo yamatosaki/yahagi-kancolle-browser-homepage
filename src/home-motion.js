@@ -1,6 +1,9 @@
+import { createHomeResourceTasks } from './home-resources.js';
+import { trackLoadingTasks } from './loading-progress.js';
+
 const homeNavigationKey = 'yahagi-home-navigation';
-const sequenceDuration = 1800;
-const assetDeadline = 2800;
+const assetDeadline = 15000;
+const completionDuration = 1200;
 
 function initOpeningNavigation() {
   let returnTo = null;
@@ -77,21 +80,19 @@ export function initHomeMotion() {
     stopOpening();
     if (reducedMotion.matches) return;
 
-    const started = performance.now();
-    let assetsReady = false;
+    const loadingController = new AbortController();
     let released = false;
     let disposed = false;
-    let frame = 0;
+    let completionTimer = 0;
     let exitTimer = 0;
-    let safetyTimer = 0;
 
     function dispose() {
       if (disposed) return;
       disposed = true;
       const skipHadFocus = screen.contains(document.activeElement);
-      cancelAnimationFrame(frame);
+      loadingController.abort();
+      clearTimeout(completionTimer);
       clearTimeout(exitTimer);
-      clearTimeout(safetyTimer);
       screen.hidden = true;
       screen.classList.remove('is-leaving');
       body.classList.remove('motion-loading');
@@ -128,27 +129,14 @@ export function initHomeMotion() {
     function reveal() {
       if (released || disposed) return;
       released = true;
-      setProgress(100);
+      loadingController.abort();
       body.classList.remove('motion-loading');
       body.classList.add('motion-revealed');
       screen.classList.add('is-leaving');
       exitTimer = window.setTimeout(dispose, 760);
     }
 
-    function tick(now) {
-      if (disposed) return;
-      const elapsed = now - started;
-      if (elapsed >= sequenceDuration && (assetsReady || elapsed >= assetDeadline)) {
-        reveal();
-        return;
-      }
-      // Sequence progress, deliberately capped until the portrait/font is ready.
-      setProgress(Math.min(94, Math.floor(94 * (1 - (1 - Math.min(elapsed / sequenceDuration, 1)) ** 1.6))));
-      frame = requestAnimationFrame(tick);
-    }
-
     stopOpening = skip;
-    safetyTimer = window.setTimeout(skip, assetDeadline + 1000);
     screen.querySelector('[data-skip-intro]').onclick = skip;
     document.addEventListener('keydown', skipForKeyboard, true);
     document.addEventListener('focusin', skipForFocus);
@@ -159,11 +147,29 @@ export function initHomeMotion() {
     body.classList.add('motion-loading');
     screen.hidden = false;
 
-    const portrait = document.querySelector('[data-hero-layer="portrait"]');
-    const imageReady = portrait?.decode ? portrait.decode() : Promise.resolve();
-    const fontReady = document.fonts?.load('italic 900 24px "Yahagi Display"');
-    Promise.allSettled([imageReady, fontReady]).then(() => { assetsReady = true; });
-    frame = requestAnimationFrame(tick);
+    async function loadResources() {
+      try {
+        const result = await trackLoadingTasks(createHomeResourceTasks({
+          portrait: document.querySelector('[data-hero-layer="portrait"]'),
+          wordmarks: [screen.querySelector('.boot-wordmark-ink'), document.querySelector('.hero-wordmark')],
+          body,
+        }), {
+          signal: loadingController.signal,
+          timeoutMs: assetDeadline,
+          onProgress: ({ completed, total }) => setProgress(total ? Math.floor(completed / total * 100) : 100),
+        });
+        if (disposed || released || result.status === 'aborted') return;
+        state.textContent = result.status === 'timeout' ? 'FALLBACK / CONTINUE'
+          : result.failed ? 'READY WITH FALLBACK' : 'READY TO LAUNCH';
+        // The completed mark gets a short finale; resource progress has no timed increments.
+        completionTimer = window.setTimeout(reveal, result.status === 'timeout' ? 0 : completionDuration);
+      } catch {
+        if (disposed || released) return;
+        state.textContent = 'FALLBACK / CONTINUE';
+        reveal();
+      }
+    }
+    loadResources();
   }
 
   hero.addEventListener('pointermove', (event) => {

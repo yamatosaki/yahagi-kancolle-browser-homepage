@@ -128,7 +128,7 @@
 .boot-percent { color: var(--accent); font: 500 45px/1 ui-monospace, Consolas, monospace; letter-spacing: -.08em; font-variant-numeric: tabular-nums; }
 .boot-percent small { margin-left: 7px; font-size: var(--text-meta); letter-spacing: 0; }
 .boot-progress-track { position: relative; height: 4px; background: #dce1e9; mask-image: repeating-linear-gradient(90deg, #000 0 13px, transparent 13px 17px); }
-.boot-progress-track > span { position: absolute; inset: 0; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.boot-progress-track > span { position: absolute; inset: 0; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease-out; }
 .boot-stages { display: flex; justify-content: space-between; gap: 12px; margin-top: 15px; font: var(--text-caption)/1.5 ui-monospace, Consolas, monospace; letter-spacing: .04em; color: #6c7786; }
 .boot-stages .is-active { color: var(--accent); }
 .boot-stages .is-complete { color: #526378; }
