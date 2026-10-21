@@ -113,6 +113,13 @@ if (releaseBody) {
 
 const menuToggle = document.querySelector('#menu-toggle');
 const navigation = document.querySelector('#primary-nav');
+menuToggle?.setAttribute('role', 'button');
+menuToggle?.setAttribute('aria-expanded', 'false');
+// Adopt a menu opened through the native fragment while the module was loading.
+if (navigation?.matches(':target') && !window.matchMedia('(min-width: 1101px)').matches) {
+  menuToggle?.setAttribute('aria-expanded', 'true');
+  navigation.classList.add('is-open');
+}
 function renderMenuLabel() {
   const label = menuToggle?.querySelector('span');
   if (label) label.textContent = t(menuToggle.getAttribute('aria-expanded') === 'true' ? '关闭' : '菜单');
@@ -123,12 +130,22 @@ function closeMenu() {
   renderMenuLabel();
   navigation.classList.remove('is-open');
 }
-menuToggle?.addEventListener('click', () => {
+menuToggle?.addEventListener('click', (event) => {
+  event.preventDefault();
   const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
   menuToggle.setAttribute('aria-expanded', String(!isOpen));
   renderMenuLabel();
   navigation.classList.toggle('is-open', !isOpen);
   if (!isOpen) navigation.querySelector('a').focus();
+});
+menuToggle?.addEventListener('keydown', (event) => {
+  if (event.key !== ' ') return;
+  event.preventDefault();
+});
+menuToggle?.addEventListener('keyup', (event) => {
+  if (event.key !== ' ') return;
+  event.preventDefault();
+  menuToggle.click();
 });
 navigation?.addEventListener('click', (event) => { if (event.target.closest('a')) closeMenu(); });
 document.addEventListener('keydown', (event) => {
