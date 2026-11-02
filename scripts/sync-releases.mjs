@@ -23,8 +23,10 @@ export function documentBody(markdown, tag) {
   const lines = markdown.replace(/^\uFEFF/, '').split(/\r?\n/);
   const separator = lines.findIndex((line) => line.trim() === '---');
   const preamble = lines.slice(0, separator).join('\n');
+  // Official documents may localize the brand and append a release description.
+  const heading = lines[0].trim().match(/^# (?:ヤハギ|Yahagi|야하기) (v\S+)(?:\s+.+)?$/);
   if (separator < 0 || separator > 10
-    || lines[0].trim() !== `# ヤハギ v${tag.replace(/^v/i, '')}`
+    || heading?.[1] !== `v${tag.replace(/^v/i, '')}`
     || !['简体中文', '繁體中文', '日本語', 'English', '한국어'].every((label) => preamble.includes(label))
     || !preamble.includes(`/releases/tag/${encodeURIComponent(tag)}`)) {
     throw new Error(`Unexpected language document format for ${tag}. The existing archive was kept.`);

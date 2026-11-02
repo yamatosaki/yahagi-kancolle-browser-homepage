@@ -12,6 +12,36 @@ test('removes the source wrapper and preserves body headings and separators', ()
   assert.throws(() => documentBody(raw('  '), '1.0.0'), /Empty/);
 });
 
+test('accepts the localized release headings introduced in 1.0.9', () => {
+  const body = '## Changes\n\nFirst.\n\n---\n\nSecond.';
+  const document = raw(body).replaceAll('1.0.0', '1.0.9');
+  for (const heading of [
+    '# ヤハギ v1.0.9 正式版更新说明',
+    '# ヤハギ v1.0.9 正式版更新說明',
+    '# ヤハギ v1.0.9 正式版アップデートのお知らせ',
+    '# 야하기 v1.0.9 정식 버전 업데이트 안내',
+    '# Yahagi v1.0.9 Stable Release Notes',
+  ]) {
+    const localized = document.replace('# ヤハギ v1.0.9', heading);
+    assert.equal(documentBody(localized, '1.0.9'), body, heading);
+    assert.equal(documentBody(`\uFEFF${localized}`, '1.0.9'), body, heading);
+  }
+});
+
+test('rejects localized wrappers with mismatched versions or missing source metadata', () => {
+  const document = raw('Release body').replaceAll('1.0.0', '1.0.9');
+  for (const heading of [
+    '# Yahagi v1.0.8 Stable Release Notes',
+    '# Yahagi v1.0.90 Stable Release Notes',
+    '# Yahagi v1.0.9-beta Release Notes',
+    '# Other v1.0.9 Stable Release Notes',
+  ]) {
+    assert.throws(() => documentBody(document.replace('# ヤハギ v1.0.9', heading), '1.0.9'), /Unexpected/, heading);
+  }
+  assert.throws(() => documentBody(document.replace('한국어', ''), '1.0.9'), /Unexpected/);
+  assert.throws(() => documentBody(document.replace('/releases/tag/1.0.9', '/releases/tag/1.0.8'), '1.0.9'), /Unexpected/);
+});
+
 function mockFetch(missingLanguage = false) {
   return async (value) => {
     const url = String(value);

@@ -21,8 +21,8 @@ test('the build HTML transform includes platform versions and accessible downloa
   const rendered = htmlTransform(html);
   assert.match(rendered, /data-open-download="Android" aria-label="下载 Android 版"/);
   assert.match(rendered, /data-open-download="iOS" aria-label="下载 iOS 版"/);
-  assert.match(rendered, /v1\.0\.8 · APK 安装包/);
-  assert.match(rendered, /v1\.0\.8 · IPA 安装包/);
+  assert.match(rendered, /v1\.0\.9 · APK 安装包/);
+  assert.match(rendered, /v1\.0\.9 · IPA 安装包/);
   assert.match(rendered, /本项目主要维护的版本。更新时请按照发布说明覆盖安装。/);
 });
 
