@@ -52,7 +52,7 @@ npm run deploy
 - `disclaimer.html`：使用用户提供的三段免责声明，说明非盈利、非官方性质、软件保证及使用风险；五种语言同步提供，并保留相关文档链接，从页脚进入。
 - 全站使用轻量导航，链接直接打开对应 HTML 页面；主导航包含首页、功能、下载、更新日志、赞助与致谢。
 - 全站提供简体中文、繁體中文、日本語、한국어 和 English，页头可即时切换；跨页和刷新保留所选语言。更新日志跟随网站语言，切换时保留当前版本。
-- Android/iOS 按钮各自打开当前平台的四来源弹窗，弹窗内不切换平台。两平台均已启用同一百度、夸克分享文件夹，提取码分别为 `2953`、`miq4`；GitHub 和直接下载仍按平台分别配置。
+- Android/iOS 按钮各自打开当前平台的来源弹窗，弹窗内不切换平台。Android 保留百度、夸克、GitHub 和直接下载四项；iOS 在这四项前增加 TestFlight 公开测试卡片，宽屏时独占整行。两平台均已启用同一百度、夸克分享文件夹，提取码分别为 `2953`、`miq4`；GitHub 和直接下载仍按平台分别配置。
 - 网站不展示应用截图，也不包含使用指南。
 - 六页统一使用冷白 `#F7F8FA` 背景、墨黑 `#111318` 文字与钴蓝 `#2456FF` 强调色；手机导航断点为 1100px，1101px 起恢复桌面导航。桌面导航字号随视口宽度从 12px 平滑增长，2560px 宽时约 19.2px，3840px 宽时上限为 24px；语言选择字号与控件尺寸同步放大。
 - UI 使用与应用相同的 HarmonyOS Sans 可变字体：简中和日语使用 SC 版，繁中使用 TC 版，英文和韩语使用通用版；韩文字符由系统字体补足。原版 TTF 位于 `public/fonts/`，字重范围为 40–900，字体随所选语言加载。
@@ -153,7 +153,7 @@ npm run build
 
 下载数据于 **2026 年 11 月 2 日**通过 GitHub Releases API 核实，当前配置为 **v1.0.9**，发布于 2026 年 11 月 2 日。
 
-在 `src/site-config.js` 的 `downloads` 数组中，每个平台包含 `version`、`fileType`、`url`、`note` 和 `sources`。`sources` 按 `baidu`、`quark`、`github`、`direct` 配置；Android 与 iOS 共用同一百度、夸克分享文件夹，两平台的网盘 `url`、`code` 均已填写，提取码分别为 `2953`、`miq4`。更新网盘链接或提取码时同步两平台配置；下载弹窗以及 GitHub、直接下载地址仍按平台独立维护。
+在 `src/site-config.js` 的 `downloads` 数组中，每个平台包含 `version`、`fileType`、`url`、`note` 和 `sources`。Android 的 `sources` 按 `baidu`、`quark`、`github`、`direct` 配置；iOS 在这四项前增加 `testflight`，入口为 [TestFlight 公开测试](https://testflight.apple.com/join/WWU4StEm)，无需提取码，卡片在宽屏时独占整行。Android 与 iOS 共用同一百度、夸克分享文件夹，两平台的网盘 `url`、`code` 均已填写，提取码分别为 `2953`、`miq4`。更新网盘链接或提取码时同步两平台配置；下载弹窗以及 GitHub、直接下载地址仍按平台独立维护。
 
 更新发布版本时，同时核对版本文字、平台的 `url`、`github` 发布页地址与 `direct` 安装包地址。Android 是项目主要维护的平台；iOS 是 Kutinana 提供的第三方移植版，安装方式、支持功能和维护情况以对应发布说明为准。
 

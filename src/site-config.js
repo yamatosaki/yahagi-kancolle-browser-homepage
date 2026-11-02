@@ -41,6 +41,7 @@ export const downloads = [
     note: 'iOS 安装方式与支持功能请参阅对应版本说明。',
     attribution: 'iOS 移植版由 Kutinana 提供',
     sources: [
+      { key: 'testflight', name: 'TestFlight 公开测试', description: '通过 TestFlight 安装 iOS 版', url: 'https://testflight.apple.com/join/WWU4StEm', code: '' },
       { key: 'baidu', name: '百度网盘', description: '网盘分享下载', url: 'https://pan.baidu.com/s/1V8L9nDtdAY4J-CaDu-bN7g?pwd=2953', code: '2953' },
       { key: 'quark', name: '夸克网盘', description: '网盘分享下载', url: 'https://pan.quark.cn/s/93202af2fa7c?pwd=miq4', code: 'miq4' },
       { key: 'github', name: 'GitHub', description: '查看完整发布与更新记录', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.0.9', code: '' },

@@ -183,6 +183,7 @@ body:not([data-page="home"]) .site-header{border-bottom:1px solid var(--line)}
 .download-version{margin:21px 0 20px;color:var(--muted);font-size:var(--text-meta)}
 .download-sources{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1vw,24px)}
 .download-source-wrapper{min-width:0}
+.download-source-wrapper.is-featured{grid-column:1/-1}
 .download-source{display:flex;align-items:center;gap:clamp(12px,.8vw,20px);width:100%;min-height:clamp(110px,6vw,170px);padding:clamp(16px,1.2vw,28px) clamp(14px,1vw,24px);text-align:left;background:#fff;border:1px solid #dce1ed;border-radius:12px;transition:border-color .2s,background .2s}
 a.download-source:hover{border-color:var(--accent);background:#f1f4ff}
 .source-mark{flex:0 0 1.8em;display:flex;align-items:center;justify-content:center;width:1.8em;height:1.9em;border:1px solid #d8deed;border-radius:8px;color:var(--ink);font-size:var(--text-small);font-weight:500}

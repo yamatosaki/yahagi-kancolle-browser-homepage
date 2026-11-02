@@ -1,6 +1,6 @@
 import { onLocaleChange, t } from './i18n.js';
 
-const sourceMarks = { baidu: 'B', quark: 'Q', github: 'G', direct: '↓' };
+const sourceMarks = { testflight: 'T', baidu: 'B', quark: 'Q', github: 'G', direct: '↓' };
 const initializedDialogs = new WeakSet();
 
 /** Connect platform download buttons to the locally rendered source picker. */
@@ -34,6 +34,7 @@ export function initDownloadDialog(downloads) {
   function makeSource(source, platform) {
     const wrapper = document.createElement('div');
     wrapper.className = 'download-source-wrapper';
+    wrapper.classList.toggle('is-featured', source.key === 'testflight');
 
     const available = typeof source.url === 'string' && source.url.trim().length > 0;
     const control = document.createElement(available ? 'a' : 'button');
