@@ -66,3 +66,39 @@ test('syncs all five documents and retains the original release metadata', async
 test('a missing language rejects the entire sync instead of publishing incomplete notes', async () => {
   await assert.rejects(buildArchive(mockFetch(true)), /404/);
 });
+
+const releasePageNotes = '## Changes\n\nOfficial 1.10 notes.\n\n---\n\nKeep this section.';
+const releasePage = '简体中文 ｜ [繁體中文](old/1.0.9/README.zh-Hant.md) ｜ 日本語 ｜ English ｜ 한국어\r\n\r\n'
+  + '# ヤハギ v1.10 正式版更新说明\r\n' + releasePageNotes.replaceAll('\n', '\r\n');
+
+function releasePageFetch(body = releasePage, status = 404) {
+  return async (value) => {
+    const url = String(value);
+    if (url.includes('/releases?')) return Response.json([{ ...release, tag_name: '1.10', html_url: release.html_url.replace('1.0.0', '1.10'), body }]);
+    if (url.endsWith('/git/ref/heads/master')) return Response.json({ object: { sha: revision } });
+    assert.ok(url.includes(`/${revision}/docs/releases/1.10/`));
+    return new Response('Unavailable', { status });
+  };
+}
+
+test('uses the official Chinese release page when all five version documents are absent', async () => {
+  const archive = await buildArchive(releasePageFetch());
+  const current = archive.releases[0];
+  assert.equal(current.tag, '1.10');
+  assert.equal(current.body, releasePage, 'retain the unmodified API body');
+  assert.deepEqual(current.notes, {
+    'zh-CN': { body: releasePageNotes, sourceUrl: current.url },
+  }, 'strip stale language links and duplicate title without inventing translations');
+});
+
+test('missing documents cannot substitute an empty or mismatched release page', async () => {
+  for (const body of ['', releasePage.replace('v1.10', 'v1.0.9'), releasePage.split('## Changes')[0]]) {
+    await assert.rejects(buildArchive(releasePageFetch(body)), /release page|Empty/);
+  }
+});
+
+test('server and authorization errors never fall back to the release page', async () => {
+  for (const status of [500, 403]) {
+    await assert.rejects(buildArchive(releasePageFetch(releasePage, status)), new RegExp(String(status)));
+  }
+});

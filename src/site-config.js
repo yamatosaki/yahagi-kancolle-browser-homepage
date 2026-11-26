@@ -13,39 +13,39 @@ export const heroAssets = {
   portrait: assetPath('hero/yahagi-portrait.png?v=a7d6b291'),
 };
 
-// Published assets verified against GitHub Releases on 2026-11-02.
+// Published assets verified against GitHub Releases on 2026-11-26.
 // Keep both the version text and the asset URL in sync when updating a release.
 export const downloads = [
   {
     platform: 'Android',
     label: '下载 Android 版',
-    description: 'v1.0.9 · APK 安装包',
-    version: '1.0.9',
+    description: 'v1.10 · APK 安装包',
+    version: '1.10',
     fileType: 'APK',
-    url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.0.9/Yahagi-1.0.9.apk',
+    url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.10/Yahagi-1.10.apk',
     note: '本项目主要维护的版本。更新时请按照发布说明覆盖安装。',
     sources: [
       { key: 'baidu', name: '百度网盘', description: '网盘分享下载', url: 'https://pan.baidu.com/s/1V8L9nDtdAY4J-CaDu-bN7g?pwd=2953', code: '2953' },
       { key: 'quark', name: '夸克网盘', description: '网盘分享下载', url: 'https://pan.quark.cn/s/93202af2fa7c?pwd=miq4', code: 'miq4' },
-      { key: 'github', name: 'GitHub', description: '查看完整发布与更新记录', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.0.9', code: '' },
-      { key: 'direct', name: '直接下载', description: '直接获取 APK 安装包', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.0.9/Yahagi-1.0.9.apk', code: '' },
+      { key: 'github', name: 'GitHub', description: '查看完整发布与更新记录', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.10', code: '' },
+      { key: 'direct', name: '直接下载', description: '直接获取 APK 安装包', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.10/Yahagi-1.10.apk', code: '' },
     ],
   },
   {
     platform: 'iOS',
     label: '下载 iOS 版',
-    description: 'v1.0.9 · IPA 安装包',
-    version: '1.0.9',
+    description: 'v1.10 · IPA 安装包',
+    version: '1.10',
     fileType: 'IPA',
-    url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.0.9/YahagiKancolleBrowser_1.0.9.ipa',
+    url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.10/YahagiKancolleBrowser_1.10.0.ipa',
     note: 'iOS 安装方式与支持功能请参阅对应版本说明。',
     attribution: 'iOS 移植版由 Kutinana 提供',
     sources: [
       { key: 'testflight', name: 'TestFlight 公开测试', description: '通过 TestFlight 安装 iOS 版', url: 'https://testflight.apple.com/join/WWU4StEm', code: '' },
       { key: 'baidu', name: '百度网盘', description: '网盘分享下载', url: 'https://pan.baidu.com/s/1V8L9nDtdAY4J-CaDu-bN7g?pwd=2953', code: '2953' },
       { key: 'quark', name: '夸克网盘', description: '网盘分享下载', url: 'https://pan.quark.cn/s/93202af2fa7c?pwd=miq4', code: 'miq4' },
-      { key: 'github', name: 'GitHub', description: '查看完整发布与更新记录', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.0.9', code: '' },
-      { key: 'direct', name: '直接下载', description: '直接获取 IPA 安装包', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.0.9/YahagiKancolleBrowser_1.0.9.ipa', code: '' },
+      { key: 'github', name: 'GitHub', description: '查看完整发布与更新记录', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.10', code: '' },
+      { key: 'direct', name: '直接下载', description: '直接获取 IPA 安装包', url: 'https://github.com/yamatosaki/yahagi-kancolle-browser/releases/download/1.10/YahagiKancolleBrowser_1.10.0.ipa', code: '' },
     ],
   },
 ];

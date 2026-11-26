@@ -36,6 +36,23 @@ export function documentBody(markdown, tag) {
   return body;
 }
 
+function releasePageBody(markdown, tag) {
+  const lines = markdown.replace(/^\uFEFF/, '').split(/\r?\n/);
+  // The release page can retain a language menu pointing to an older version.
+  if (lines[0].trim().startsWith('简体中文 ｜')
+    && ['繁體中文', '日本語', 'English', '한국어'].every((label) => lines[0].includes(label))) {
+    lines.shift();
+  }
+  while (lines.length && !lines[0].trim()) lines.shift();
+  const heading = lines[0]?.trim().match(/^# ヤハギ (v\S+) 正式版更新说明$/);
+  if (heading?.[1] !== `v${tag.replace(/^v/i, '')}`) {
+    throw new Error(`Unexpected release page format for ${tag}. The existing archive was kept.`);
+  }
+  const body = lines.slice(1).join('\n').trim();
+  if (!body) throw new Error(`Empty release page for ${tag}. The existing archive was kept.`);
+  return body;
+}
+
 function normalizeRelease(release) {
   if (!Number.isSafeInteger(release.id)
     || typeof release.tag_name !== 'string'
@@ -59,7 +76,7 @@ function normalizeRelease(release) {
   };
 }
 
-async function request(url, fetchImpl) {
+async function request(url, fetchImpl, { allowNotFound = false } = {}) {
   const response = await fetchImpl(url, {
     headers: {
       Accept: 'application/vnd.github+json',
@@ -68,7 +85,7 @@ async function request(url, fetchImpl) {
     },
     signal: AbortSignal.timeout(requestTimeoutMs),
   });
-  if (!response.ok) {
+  if (!response.ok && !(allowNotFound && response.status === 404)) {
     throw new Error(`GitHub returned ${response.status} ${response.statusText}: ${url}`);
   }
   return response;
@@ -129,14 +146,25 @@ export async function buildArchive(fetchImpl = fetch) {
 
   for (const release of releases) {
     const path = `docs/releases/${encodeURIComponent(release.tag)}`;
-    release.notes = Object.fromEntries(await Promise.all(Object.entries(noteFiles).map(async ([locale, filename]) => {
+    const documents = await Promise.all(Object.entries(noteFiles).map(async ([locale, filename]) => {
       const rawUrl = `https://raw.githubusercontent.com/yamatosaki/yahagi-kancolle-browser/${notesRevision}/${path}/${filename}`;
-      const response = await request(rawUrl, fetchImpl);
+      const response = await request(rawUrl, fetchImpl, { allowNotFound: true });
+      if (response.status === 404) return [locale, null];
       return [locale, {
         body: documentBody(await response.text(), release.tag),
         sourceUrl: `${repositoryUrl}/blob/${notesRevision}/${path}/${filename}`,
       }];
-    })));
+    }));
+    const missing = documents.filter(([, notes]) => notes === null);
+    if (missing.length === documents.length) {
+      release.notes = { 'zh-CN': { body: releasePageBody(release.body, release.tag), sourceUrl: release.url } };
+      console.log(`Loaded ${release.tag}: official Chinese release page (no separate language documents).`);
+      continue;
+    }
+    if (missing.length) {
+      throw new Error(`Missing language documents (404) for ${release.tag}: ${missing.map(([locale]) => locale).join(', ')}. The existing archive was kept.`);
+    }
+    release.notes = Object.fromEntries(documents);
     console.log(`Loaded ${release.tag}: all five language documents.`);
   }
 

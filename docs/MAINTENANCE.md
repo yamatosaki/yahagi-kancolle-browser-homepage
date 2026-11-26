@@ -132,7 +132,7 @@ npm run deploy
 
 ## 更新日志同步
 
-当前快照包含 **1.0.0–1.0.9 共 10 个公开版本、50 份官方语言文档**，保留 GitHub Releases 的原始 Markdown、名称、发布时间和原始页面链接。各语言正文来自应用仓库的 `docs/releases/{版本}/`，分别读取 `README.md`、`README.zh-Hant.md`、`README.ja.md`、`README.ko.md`、`README.en.md`；网站仅移除文档顶部重复的版本标题、语言导航和返回链接，保留正文。浏览器读取打包后的静态数据，不调用 GitHub API。
+当前快照包含 **1.0.0–1.0.9 与 1.10 共 11 个公开版本**，保留 GitHub Releases 的原始 Markdown、名称、发布时间和原始页面链接。前 10 个版本包含 50 份官方语言文档，来自应用仓库的 `docs/releases/{版本}/`，分别读取 `README.md`、`README.zh-Hant.md`、`README.ja.md`、`README.ko.md`、`README.en.md`；网站仅移除文档顶部重复的版本标题、语言导航和返回链接，保留正文。1.10 尚无独立语言文档，使用该版本发布页的官方中文原文。浏览器读取打包后的静态数据，不调用 GitHub API。
 
 上游发布或修改记录后，先同步，再构建：
 
@@ -141,9 +141,11 @@ npm run sync:releases
 npm run build
 ```
 
-同步脚本分页读取公开发布，跳过草稿，再固定一个仓库提交读取全部版本的五语言文档。版本标题支持本地化名称与说明，并校验准确版本号。`notesRevision` 和每份文档的 `sourceUrl` 记录来源。全部获取与校验成功后才替换快照；任一文档缺失、格式异常或请求失败时保留旧文件。`npm run build` 本身不会联网刷新日志。更新日志页支持桌面版本索引、手机选择框及版本 URL 的前进后退。
+同步脚本分页读取公开发布，跳过草稿，再固定一个仓库提交读取各版本的五语言文档。版本标题支持本地化名称与说明，并校验准确版本号。只有某版本的 5 份独立文档全部返回 404 时，才使用该版官方中文发布正文，移除顶部语言导航和重复版本标题；非简中页面会提示正在显示中文原文。后续五语文档齐备后，再次同步会自动采用对应文档。`notesRevision` 和每份正文的 `sourceUrl` 记录来源。
 
-运行 `npm test` 可检查文档同步、五语言快照完整性和正文选择逻辑。
+全部获取与校验成功后才替换快照；部分语言文档缺失、格式异常或其他请求错误仍会停止同步并保留旧文件。`npm run build` 本身不会联网刷新日志。更新日志页支持桌面版本索引、手机选择框及版本 URL 的前进后退。
+
+运行 `npm test` 可检查文档同步、快照完整性、语言回退和正文选择逻辑。
 
 ## 赞助素材
 
@@ -151,7 +153,7 @@ npm run build
 
 ## 下载来源
 
-下载数据于 **2026 年 11 月 2 日**通过 GitHub Releases API 核实，当前配置为 **v1.0.9**，发布于 2026 年 11 月 2 日。
+下载数据于 **2026 年 11 月 26 日**通过 GitHub Releases API 核实，当前配置为 **v1.10**，发布于 2026 年 11 月 26 日。Android 安装包为 `Yahagi-1.10.apk`；iOS 安装包为 `YahagiKancolleBrowser_1.10.0.ipa`，其发布标签与下载路径仍为 `1.10`。
 
 在 `src/site-config.js` 的 `downloads` 数组中，每个平台包含 `version`、`fileType`、`url`、`note` 和 `sources`。Android 的 `sources` 按 `baidu`、`quark`、`github`、`direct` 配置；iOS 在这四项前增加 `testflight`，入口为 [TestFlight 公开测试](https://testflight.apple.com/join/WWU4StEm)，无需提取码，卡片在宽屏时独占整行。Android 与 iOS 共用同一百度、夸克分享文件夹，两平台的网盘 `url`、`code` 均已填写，提取码分别为 `2953`、`miq4`。更新网盘链接或提取码时同步两平台配置；下载弹窗以及 GitHub、直接下载地址仍按平台独立维护。
 
@@ -159,7 +161,7 @@ npm run build
 
 - [应用仓库](https://github.com/yamatosaki/yahagi-kancolle-browser)
 - [版本发布](https://github.com/yamatosaki/yahagi-kancolle-browser/releases)
-- [v1.0.9 发布页](https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.0.9)
+- [v1.10 发布页](https://github.com/yamatosaki/yahagi-kancolle-browser/releases/tag/1.10)
 
 功能文案依据项目 README。游戏操作由玩家完成；任务进度与估算结果应结合游戏画面判断。日志与编成备份不等于全部应用数据备份。
 
