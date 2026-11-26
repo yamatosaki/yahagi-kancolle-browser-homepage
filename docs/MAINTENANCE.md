@@ -132,7 +132,7 @@ npm run deploy
 
 ## 更新日志同步
 
-当前快照包含 **1.0.0–1.0.9 与 1.10 共 11 个公开版本**，保留 GitHub Releases 的原始 Markdown、名称、发布时间和原始页面链接。前 10 个版本包含 50 份官方语言文档，来自应用仓库的 `docs/releases/{版本}/`，分别读取 `README.md`、`README.zh-Hant.md`、`README.ja.md`、`README.ko.md`、`README.en.md`；网站仅移除文档顶部重复的版本标题、语言导航和返回链接，保留正文。1.10 尚无独立语言文档，使用该版本发布页的官方中文原文。浏览器读取打包后的静态数据，不调用 GitHub API。
+当前快照包含 **1.0.0–1.0.9 与 1.10 共 11 个公开版本**，每个版本均提供简体中文、繁體中文、日本語、한국어 和 English 更新说明。55 份 Markdown 来自应用仓库的 `docs/releases/{版本}/`，对应 `README.md`、`README.zh-Hant.md`、`README.ja.md`、`README.ko.md` 和 `README.en.md`。网站展示各语言正文时移除文档顶部重复的版本标题、语言导航和返回链接。快照另存 GitHub Release 原文、名称、发布时间和发布页链接。浏览器直接读取打包后的静态数据。
 
 上游发布或修改记录后，先同步，再构建：
 
